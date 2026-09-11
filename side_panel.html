@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Veo3 Kit</title>
+  <link rel="stylesheet" href="side_panel.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div id="conn-dot"></div>
+    <img class="header-logo" src="assets/logo.svg" width="24" height="24" alt="">
+    <div class="header-title"><span>Veo3 Kit</span> Extension</div>
+    <div class="header-controls">
+      <select id="agent-route-mode" class="header-route" title="Agent route">
+        <option value="automatic">Automatic</option>
+        <option value="local-local">Local -> Local</option>
+        <option value="server-local">Server -> Local</option>
+        <option value="custom">Custom</option>
+      </select>
+      <div class="toggle-wrap">
+        <span class="toggle-label" id="toggle-label">OFF</span>
+        <label class="toggle">
+          <input type="checkbox" id="main-toggle">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <!-- Metrics -->
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="metric-value" id="m-total">0</div>
+      <div class="metric-label">Total</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value green" id="m-success">0</div>
+      <div class="metric-label">Success</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value red" id="m-failed">0</div>
+      <div class="metric-label">Failed</div>
+    </div>
+  </div>
+
+  <!-- State bar -->
+  <div class="state-bar">
+    STATE
+    <span id="state-badge" class="off">off</span>
+    <span id="token-status" class="bad">no token</span>
+  </div>
+
+  <!-- Agent socket config -->
+  <div class="agent-config is-collapsed" id="agent-config">
+    <button class="agent-config-header" id="agent-config-toggle" type="button" aria-expanded="false">
+      <span>Agent Socket</span>
+      <span class="agent-config-summary">
+        <span id="agent-config-status">default</span>
+        <span id="agent-config-caret">▸</span>
+      </span>
+    </button>
+    <div class="agent-config-body" id="agent-config-body" hidden>
+      <input id="agent-ws-url" type="url" spellcheck="false" placeholder="ws://127.0.0.1:9422">
+      <input id="agent-callback-url" type="url" spellcheck="false" placeholder="http://127.0.0.1:8120/api/ext/callback">
+      <div class="agent-config-actions">
+        <button class="btn" id="agent-config-save" type="button">Save Socket</button>
+        <button class="btn" id="agent-config-reset" type="button">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn btn-primary" id="btn-flow">Open Flow Tab</button>
+    <button class="btn" id="btn-cookie">Get Cookie</button>
+    <button class="btn" id="btn-token">Refresh Token</button>
+  </div>
+
+  <!-- Request log -->
+  <div class="log-section">
+    <div class="log-header">
+      <span>Request Log</span>
+      <div class="log-actions">
+        <button class="log-clear" id="log-clear" type="button" disabled>Clear</button>
+        <span id="log-count">0</span>
+      </div>
+    </div>
+
+    <div class="log-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Error</th>
+          </tr>
+        </thead>
+        <tbody id="log-body">
+          <tr>
+            <td colspan="5" class="log-empty">No requests yet</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Chat UI -->
+  <div class="chat-section">
+    <div class="chat-header">
+      <span>Chat</span>
+      <select class="chat-model-select" id="chat-model">
+        <option value="">Loading models...</option>
+      </select>
+    </div>
+    <div class="chat-config" id="chat-config">
+      <button class="chat-config-toggle" id="chat-config-toggle" type="button" aria-expanded="true">
+        <span>Chat config</span>
+        <b id="chat-config-summary">Veo3 Kit backend</b>
+        <span id="chat-config-caret">▴</span>
+      </button>
+      <div class="chat-settings" id="chat-settings-body">
+        <select id="chat-source" title="Chat source">
+          <option value="flowkit">Veo3 Kit backend</option>
+          <option value="9router">9Router direct</option>
+        </select>
+        <input id="chat-router-base" type="url" placeholder="9Router base URL, e.g. http://127.0.0.1:20128/v1" />
+        <div class="router-fields" id="chat-router-fields">
+          <input id="chat-router-key" type="password" placeholder="9Router API key, optional for local router" />
+          <button class="btn" id="chat-settings-save" type="button">Save</button>
+          <button class="btn" id="chat-router-test" type="button">Test</button>
+        </div>
+        <div class="chat-router-status" id="chat-router-status"></div>
+      </div>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-empty">Type <span style="color:var(--accent)">/</span> for commands, or ask anything...</div>
+    </div>
+    <div class="chat-input-row" style="position:relative">
+      <div class="skill-dropdown" id="skill-dropdown"></div>
+      <textarea class="chat-input" id="chat-input" placeholder="/ — commands | ask anything..." rows="1"></textarea>
+      <button class="chat-send" id="chat-send">Send</button>
+    </div>
+  </div>
+
+  <!-- Signature -->
+  <div class="signature">
+    <a href="https://github.com/crisng95/flowkit" target="_blank">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:3px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Veo3 Kit</a> &middot; built by <a href="https://veogent.com" target="_blank">veogent.com</a>
+  </div>
+
+  <!-- Detail overlay -->
+  <div class="detail-overlay" id="detail-overlay">
+    <div class="detail-panel">
+      <div class="detail-header">
+        <span id="detail-title">Request Detail</span>
+        <button class="detail-close" id="detail-close">&times;</button>
+      </div>
+      <div class="detail-body" id="detail-body"></div>
+    </div>
+  </div>
+
+  <script src="side_panel.js"></script>
+  <script src="side_panel_chat.js"></script>
+  <script src="side_panel_skills.js"></script>
+</body>
+</html>

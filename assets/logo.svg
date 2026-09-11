@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="FlowKit extension logo">
+  <defs>
+    <linearGradient id="bg" x1="124" y1="96" x2="900" y2="928" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a1828"/>
+      <stop offset="0.52" stop-color="#11344a"/>
+      <stop offset="1" stop-color="#0a5b5f"/>
+    </linearGradient>
+    <linearGradient id="flow" x1="196" y1="194" x2="828" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#83f5ff"/>
+      <stop offset="0.55" stop-color="#22c7d8"/>
+      <stop offset="1" stop-color="#65f2a6"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="320" y1="240" x2="746" y2="718" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffe08a"/>
+      <stop offset="1" stop-color="#ff9f2e"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="64" y="64" width="896" height="896" rx="208" fill="url(#bg)"/>
+  <rect x="64" y="64" width="896" height="896" rx="208" fill="none" stroke="#4ce6f1" stroke-opacity="0.58" stroke-width="20"/>
+  <path d="M132 782c134-84 261-109 382-75 138 39 246 18 378-84v241c0 53-43 96-96 96H228c-53 0-96-43-96-96z" fill="#04101d" opacity="0.48"/>
+
+  <g opacity="0.16" fill="none" stroke="#b9fbff" stroke-linecap="round" stroke-width="10">
+    <path d="M202 270h620"/>
+    <path d="M202 512h620"/>
+    <path d="M202 754h620"/>
+    <path d="M270 202v620"/>
+    <path d="M512 154v716"/>
+    <path d="M754 202v620"/>
+  </g>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M296 718V330c0-38 31-69 69-69h189" stroke="#03101a" stroke-width="118" opacity="0.72"/>
+    <path d="M352 512h164c48 0 87-39 87-87V306" stroke="#03101a" stroke-width="118" opacity="0.72"/>
+    <path d="M512 512h70c42 0 80 24 99 61l77 149" stroke="#03101a" stroke-width="118" opacity="0.72"/>
+    <path d="M592 502l166-170" stroke="#03101a" stroke-width="118" opacity="0.72"/>
+    <path d="M296 718V330c0-38 31-69 69-69h189" stroke="url(#flow)" stroke-width="72"/>
+    <path d="M352 512h164c48 0 87-39 87-87V306" stroke="url(#flow)" stroke-width="72"/>
+    <path d="M512 512h70c42 0 80 24 99 61l77 149" stroke="url(#flow)" stroke-width="72"/>
+    <path d="M592 502l166-170" stroke="url(#flow)" stroke-width="72"/>
+  </g>
+
+  <g fill="#e9feff" stroke="#06131f" stroke-width="20">
+    <circle cx="296" cy="718" r="70"/>
+    <circle cx="296" cy="330" r="70"/>
+    <circle cx="562" cy="262" r="70"/>
+    <circle cx="758" cy="332" r="70"/>
+    <circle cx="758" cy="722" r="70"/>
+  </g>
+
+  <circle cx="296" cy="718" r="34" fill="#65f2a6"/>
+  <circle cx="296" cy="330" r="34" fill="#83f5ff"/>
+  <circle cx="562" cy="262" r="34" fill="#83f5ff"/>
+  <circle cx="758" cy="332" r="34" fill="#ffe08a"/>
+  <circle cx="758" cy="722" r="34" fill="#ffb43f"/>
+
+  <g>
+    <rect x="414" y="402" width="196" height="196" rx="56" fill="#06131f" stroke="#e9feff" stroke-width="22"/>
+    <path d="M480 459c0-18 20-30 36-20l76 45c16 10 16 33 0 43l-76 45c-16 10-36-2-36-20z" fill="url(#warm)"/>
+  </g>
+
+  <path d="M194 154v64M162 186h64" fill="none" stroke="#83f5ff" stroke-linecap="round" stroke-width="18"/>
+  <path d="M836 802v58M807 831h58" fill="none" stroke="#ffe08a" stroke-linecap="round" stroke-width="18"/>
+</svg>

@@ -1,0 +1,199 @@
+      padding: 6px 14px;
+      border-bottom: 1px solid rgba(37,37,69,0.4);
+    }
+
+    .chat-msg.user .chat-bubble {
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 8px 2px 8px 8px;
+      color: var(--text);
+    }
+
+    .chat-msg.assistant .chat-bubble {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 2px 8px 8px 8px;
+      color: var(--text);
+    }
+
+    .chat-msg.error .chat-bubble {
+      color: var(--red);
+      font-size: 10px;
+    }
+
+    .chat-role {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .chat-msg.user .chat-role  { color: var(--accent); }
+    .chat-msg.assistant .chat-role { color: var(--green); }
+    .chat-msg.error .chat-role    { color: var(--red); }
+
+    .chat-bubble {
+      font-size: 10px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      padding: 5px 8px;
+    }
+
+    .chat-typing {
+      padding: 6px 14px;
+      font-size: 10px;
+      color: var(--yellow);
+      font-style: italic;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 6px;
+      padding: 8px 14px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .chat-input {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 11px;
+      padding: 6px 10px;
+      resize: none;
+      min-height: 34px;
+      max-height: 80px;
+      line-height: 1.4;
+    }
+
+    .chat-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .chat-input::placeholder { color: var(--muted); }
+
+    .chat-send {
+      padding: 6px 12px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      border-radius: 5px;
+      color: #fff;
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      align-self: flex-end;
+      min-height: 34px;
+      transition: background 0.15s;
+    }
+
+    .chat-send:hover { background: var(--accent); }
+    .chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Skill autocomplete dropdown */
+    .skill-dropdown {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      left: 14px;
+      right: 14px;
+      background: var(--card);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      max-height: 260px;
+      overflow-y: auto;
+      z-index: 10;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.4);
+      margin-bottom: 4px;
+    }
+
+    .skill-dropdown.open { display: block; }
+
+    .skill-section-label {
+      padding: 3px 10px 2px;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .skill-separator {
+      height: 1px;
+      background: var(--border);
+      margin: 2px 0;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      cursor: pointer;
+      transition: background 0.1s;
+      border-bottom: 1px solid rgba(37,37,69,0.4);
+    }
+
+    .skill-item:last-child { border-bottom: none; }
+    .skill-item:hover { background: rgba(59,130,246,0.12); }
+
+    .skill-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      background: var(--yellow);
+      color: #000;
+      font-size: 8px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .skill-cmd {
+      font-size: 10px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    /* Command-style user message */
+    .chat-msg.command .chat-bubble {
+      background: rgba(245,158,11,0.1);
+      border-color: rgba(245,158,11,0.3);
+      font-family: var(--font);
+      font-size: 10px;
+    }
+
+    .chat-msg.command .chat-role {
+      color: var(--yellow);
+    }
+
+    /* ── Signature ──────────────────────────────────── */
+    .signature {
+      padding: 8px 14px;
+      text-align: center;
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .signature a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .signature a:hover {
+      color: var(--text);
+    }

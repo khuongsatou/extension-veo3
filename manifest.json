@@ -1,0 +1,88 @@
+{
+  "manifest_version": 3,
+  "name": "Veo3 Kit",
+  "version": "0.2.14",
+  "description": "Local agent bridge for Google Flow API — captures tokens, solves reCAPTCHA, proxies API calls",
+  "permissions": ["storage", "alarms", "tabs", "webRequest", "scripting", "declarativeNetRequest", "sidePanel", "cookies"],
+  "host_permissions": [
+    "https://labs.google/*",
+    "https://flow.google.com/*",
+    "https://aisandbox-pa.googleapis.com/*",
+    "https://flow-content.google/*",
+    "https://storage.googleapis.com/*",
+    "http://127.0.0.1:8120/*",
+    "http://127.0.0.1:9422/*",
+    "http://*/*",
+    "https://*/*",
+    "http://127.0.0.1:20128/*",
+    "https://*.1nutrouter.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' http://*:* https://*:* ws://*:* wss://*:* https://*.1nutrouter.com https://flow.google.com https://labs.google https://aisandbox-pa.googleapis.com https://flow-content.google https://storage.googleapis.com;"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://flow.google.com/*",
+        "https://labs.google/fx/tools/flow*",
+        "https://labs.google/fx/*/tools/flow*"
+      ],
+      "js": ["injected.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://flow.google.com/*",
+        "https://labs.google/fx/tools/flow*",
+        "https://labs.google/fx/*/tools/flow*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "http://*/ext/connect*",
+        "https://*/ext/connect*"
+      ],
+      "js": ["connect_page.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["https://flow.google.com/*", "https://labs.google/*"]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "referer_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "side_panel": {
+    "default_path": "side_panel.html"
+  },
+  "action": {
+    "default_title": "Veo3 Kit",
+    "default_icon": {
+      "16": "assets/icons/icon-16.png",
+      "32": "assets/icons/icon-32.png",
+      "48": "assets/icons/icon-48.png",
+      "128": "assets/icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon-16.png",
+    "32": "assets/icons/icon-32.png",
+    "48": "assets/icons/icon-48.png",
+    "128": "assets/icons/icon-128.png"
+  }
+}

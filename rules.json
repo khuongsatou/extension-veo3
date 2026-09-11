@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        {
+          "header": "Referer",
+          "operation": "set",
+          "value": "https://labs.google/"
+        },
+        {
+          "header": "Origin",
+          "operation": "set",
+          "value": "https://labs.google"
+        }
+      ],
+      "responseHeaders": [
+        {
+          "header": "Access-Control-Allow-Origin",
+          "operation": "set",
+          "value": "https://labs.google"
+        },
+        {
+          "header": "Access-Control-Allow-Methods",
+          "operation": "set",
+          "value": "PUT, OPTIONS"
+        },
+        {
+          "header": "Access-Control-Allow-Headers",
+          "operation": "set",
+          "value": "accept, content-type, x-upload-command, x-upload-file-name, x-upload-offset, x-upload-project-id, x-upload-session-url, x-goog-upload-command, x-goog-upload-file-name, x-goog-upload-offset, x-goog-upload-protocol"
+        },
+        {
+          "header": "Access-Control-Expose-Headers",
+          "operation": "set",
+          "value": "x-upload-media-id, x-goog-upload-status, x-goog-upload-url"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "aisandbox-pa.googleapis.com",
+      "resourceTypes": ["xmlhttprequest"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        {
+          "header": "Referer",
+          "operation": "set",
+          "value": "https://flow.google.com/"
+        },
+        {
+          "header": "Origin",
+          "operation": "set",
+          "value": "https://flow.google.com"
+        }
+      ],
+      "responseHeaders": [
+        {
+          "header": "Access-Control-Allow-Origin",
+          "operation": "set",
+          "value": "https://flow.google.com"
+        },
+        {
+          "header": "Access-Control-Allow-Methods",
+          "operation": "set",
+          "value": "PUT, OPTIONS"
+        },
+        {
+          "header": "Access-Control-Allow-Headers",
+          "operation": "set",
+          "value": "accept, content-type, x-upload-command, x-upload-file-name, x-upload-offset, x-upload-project-id, x-upload-session-url, x-goog-upload-command, x-goog-upload-file-name, x-goog-upload-offset, x-goog-upload-protocol"
+        },
+        {
+          "header": "Access-Control-Expose-Headers",
+          "operation": "set",
+          "value": "x-upload-media-id, x-goog-upload-status, x-goog-upload-url"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "googleapis.com/upload/",
+      "resourceTypes": ["xmlhttprequest"]
+    }
+  }
+]
