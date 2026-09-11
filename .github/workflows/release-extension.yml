@@ -1,0 +1,52 @@
+name: Release Veo3 Kit Extension
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Test release contracts
+        run: node --test tests/release-package.test.cjs tests/release-workflow.test.cjs
+
+      - name: Package and verify extension
+        id: package
+        run: node scripts/package-release.mjs
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ steps.package.outputs.zip_name }}
+          path: |
+            ${{ steps.package.outputs.zip_path }}
+            ${{ steps.package.outputs.checksum_path }}
+          if-no-files-found: error
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.package.outputs.tag }}
+          ZIP_PATH: ${{ steps.package.outputs.zip_path }}
+          CHECKSUM_PATH: ${{ steps.package.outputs.checksum_path }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" >/dev/null 2>&1 || git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            echo "Release or tag already exists: $TAG"
+            exit 1
+          fi
+          gh release create "$TAG" "$ZIP_PATH" "$CHECKSUM_PATH" \
+            --target "$GITHUB_SHA" \
+            --title "Veo3 Kit $TAG" \
+            --generate-notes
